@@ -1,6 +1,7 @@
 {
-  "type":"module",
+  "type": "module",
   "dependencies": {
+    "prettier": "^3.2.5",
     "tape": "^5.7.5"
   }
 }
