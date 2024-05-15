@@ -1,5 +1,49 @@
 import test from "tape"
 
+/*
+
+V2. A functional approach to building the chessboard.
+Already apparent that less code is needed for the same functionality.
+
+*/
+
+const create = (squares, fn, size, index) => fn(squares, size, index)
+const chessboard = (size, instructions, create, board) => {
+  for (let j = 1; j <= size ** 2; j++) {
+    for (let i = 0; i < instructions.length; i++) {
+      board = create(board, instructions[i], size, j)
+    }
+  }
+  return board
+}
+const renderSquare = (sq) => (sq.length % 2 === 0 ? sq + "#" : sq + " ")
+const addNewLineOnRowEnd = (r, size, i) => (i % size === 0 ? r + "\n" : r)
+
+const board = chessboard(8, [renderSquare, addNewLineOnRowEnd], create, "\n")
+
+const chessboardString = `
+ # # # #
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+# # # # 
+`
+
+test("Fun(ctional) chessboard", (t) => {
+  t.plan(1)
+  t.equal(board, chessboardString)
+})
+
+console.log(board)
+
+/* 
+
+V1. Untangled, but not yet "functional"
+Although a bit more declarative, it is still tightly coupled with logic
+
 const renderString = (i, isCheckered) => {
   const isEven = i % 2 === 0
   const hash = "#"
@@ -21,20 +65,4 @@ const chessboard = (size) => {
   return board
 }
 
-const chessboardString = `
- # # # #
-# # # # 
- # # # #
-# # # # 
- # # # #
-# # # # 
- # # # #
-# # # # 
-`
-
-test("Chessboard", (t) => {
-  t.plan(1)
-  t.equal(chessboard(8), chessboardString)
-})
-
-console.log(chessboard(8))
+*/
