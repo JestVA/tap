@@ -8,11 +8,8 @@ const renderString = (i, isCheckered) => {
     return isCheckered ? "#" : " "
   }
 }
-
 const addNewLineOnRowEnd = (rowEnd) => (rowEnd ? "\n" : "")
-
 const incrementRow = (increment, row) => (increment ? row + 1 : row)
-
 const chessboard = (size) => {
   let board = "\n"
   let row = 0
