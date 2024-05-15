@@ -8,7 +8,7 @@ const renderString = (i, invert) => {
   }
 }
 
-function chessboard(size) {
+const chessboard = (size) => {
   let board = "\n"
   let row = 0
   for (let i = 1; i <= Math.pow(size, 2); i++) {
@@ -21,7 +21,7 @@ function chessboard(size) {
   return board
 }
 
-const renderChessboardString = `
+const chessboardString = `
  # # # #
 # # # # 
  # # # #
@@ -34,7 +34,7 @@ const renderChessboardString = `
 
 test("Chessboard", (t) => {
   t.plan(1)
-  t.equal(chessboard(8), renderChessboardString)
+  t.equal(chessboard(8), chessboardString)
 })
 
 console.log(chessboard(8))
