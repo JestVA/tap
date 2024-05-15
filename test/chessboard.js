@@ -12,12 +12,7 @@ function chessboard(size) {
   let board = "\n"
   let row = 0
   for (let i = 1; i <= Math.pow(size, 2); i++) {
-    if (row % 2 === 0) {
-      board += renderString(i)
-    }
-    if (row % 2 !== 0) {
-      board += renderString(i, true)
-    }
+    board += renderString(i, row % 2 !== 0)
     if (i % size === 0) {
       board += "\n"
       row += 1
