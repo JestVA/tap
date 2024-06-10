@@ -9,3 +9,4 @@ export const isAlphanumeric = (test) => {
   console.log("test case for alphanumeric", test)
   return Boolean(test.match(/^[0-9a-zA-Z]+$/))
 }
+export const wait = duration => new Promise((resolve) => setTimeout(resolve, duration))
