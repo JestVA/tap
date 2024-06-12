@@ -1,80 +1,23 @@
 import test from "tape"
 import { isAlphanumeric } from "../utils/index.js"
 
-/**
- * 
-       VERY difficult to traverse and reason about what's happening here
- */
-
-       // Assert tests
-
-       test("Breaks words to space", (t) => {
-
-        function trim(text, lineLength) {
-            // how does it deal with the edges?
-            console.log(text)
-        }
-
-        t.plan(2)
-        
-        const t1 = trim("There goes, restroom is empty.", 10)
-        const t2 = trim("Hello, world! I am hungry.", 10)
-
-        t.assert(t1)
-        t.assert(t2)
-
-       })
-
-
-
-       test("Can wrap words", (t) => {
-        // test with long and short input cases
-       })
-
-        test("Wraps text to line length", (t) => {
-            // unknown
-        })
-
-        test("Dashes are special", (t) => {
-            // broken words get converted to dashes
-        })
-
-        test("Line does not start with non-alphanumeric character", (t) => {})
-
-
-
-const wrap = (text, length) => {
-  if (text.length <= length) return text
-  let lineLength = 0
-  let words = text.split(" ").reduce((result, word) => {
-    if (word.length <= length - lineLength) {
-      lineLength += word.length
-      return result + word
-    } else {
-      return result + "\n" + word
-    }
-  }, "")
-
-  console.log(words)
-  return words
-}
-
-// test cases
-// line must not start with a non-alphanumeric character
-
-test("Line must not start with non-alphanumeric character", (t) => {
-  const length = 3
-
-  const wrapped = wrap("This is anime", length).split("\n")
-
-  t.plan(wrapped.length)
-
-  wrapped.forEach((line) => {
-    if (line.length === 0) {
-      console.log("returning here...??")
-      return t.assert(true)
-    }
-
-    t.assert(isAlphanumeric(line[0]))
-  })
+// THE MOST BASIC TESTS - does the `f` return anything useful? Does it work? Is the return type the expected type?
+test("Returns a string", (t) => {
+    t.plan(4)
+    t.equal(typeof wrap("This is a string", 1), "string", `Function returns a string value when called with arguments`)
+    t.equal(wrap(undefined, undefined), "", `Returns an empty string if text is not passed to function`)
+    t.equal(wrap("Another test case", undefined), "Another test case", `Returns original string when length is not passed`)
+    t.equal(typeof wrap("Demo line", 0), "string", `Truncates to empty string when passed length is 0`)
 })
+
+function wrap(text, length) {
+    if(length === 0) return ""
+    if(!text) return ""
+    if(length === undefined) return text
+  
+
+    // broken words get converted to dashes
+
+
+    //return text
+}

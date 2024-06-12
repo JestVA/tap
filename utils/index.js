@@ -6,7 +6,6 @@ export const pipe =
   (x) =>
     fns.reduce((v, f) => f(v), x)
 export const isAlphanumeric = (test) => {
-  console.log("test case for alphanumeric", test)
   return Boolean(test.match(/^[0-9a-zA-Z]+$/))
 }
 export const wait = duration => new Promise((resolve) => setTimeout(resolve, duration))
