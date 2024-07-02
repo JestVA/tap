@@ -156,13 +156,6 @@ class Wrapper {
     this.length = length;
   }
 
-  isValidChar() {
-    const isValid = this.text
-      .split('\n')
-      .every((chunk) => isAlphanumeric(chunk[0]));
-    return isValid;
-  }
-
   insertBreakWordCharacter() {
     return (this.text += '-');
   }
@@ -172,21 +165,39 @@ class Wrapper {
     return (this.text += ' ');
   }
 
-  insertNewLineCharacter() {
-    return (this.text += '\n');
-  }
+  static parse(text, length) {
+    let parsedText = '';
+    function insertNewLineCharacter(text) {
+      return (text += '\n');
+    }
+    
+    function isValidChar(text) {
+      const isValid = text
+        .split('\n')
+        .every((chunk) => isAlphanumeric(chunk[0]));
+      return isValid;
+    }
 
-  parse() {
-    console.log(this.text);
-    return this.text;
+    let cursor = 0;
+    for (const part of text) {
+      cursor++;
+      if (cursor % length === 0) {
+        parsedText += insertNewLineCharacter(part);
+        continue;
+      }
+
+      parsedText += part;
+    }
+    console.log(parsedText, length);
+    return (parsedText += text);
   }
 }
 
 test('Output format', (t) => {
   const original = 'Hello, world! I am hungry.';
   const snapshot = `Hello, wo-\nrld! I am \nhungry.`;
-  const wrapper = new Wrapper(original, 10);
-  const parsedLength = wrapper.parse().length;
+  const wrapper = Wrapper.parse(original, 10);
+  const parsedLength = wrapper.length;
   const snapshotLength = snapshot.length;
   t.plan(1);
   t.assert(
